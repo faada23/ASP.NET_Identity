@@ -1,0 +1,9 @@
+Identity/bin
+Identity/obj
+IdentityPersistance/obj
+IdentityPersistance/bin
+IdentityUtility/bin
+IdentityUtility/obj
+Identity/appsettings.Development.json
+Identity/appsettings.json
+Identity/Properties/launchSettings.json

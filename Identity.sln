@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity", "Identity\Identity.csproj", "{9DE727E8-5132-44C2-8CD3-3CAC62A93077}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityPersistance", "IdentityPersistance\IdentityPersistance.csproj", "{073D6C26-92D7-4EEC-A66F-43C2F539EFFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityUtility", "IdentityUtility\IdentityUtility.csproj", "{9D150F57-81CC-4F23-96C3-0509715366F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9DE727E8-5132-44C2-8CD3-3CAC62A93077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DE727E8-5132-44C2-8CD3-3CAC62A93077}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DE727E8-5132-44C2-8CD3-3CAC62A93077}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DE727E8-5132-44C2-8CD3-3CAC62A93077}.Release|Any CPU.Build.0 = Release|Any CPU
+		{073D6C26-92D7-4EEC-A66F-43C2F539EFFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{073D6C26-92D7-4EEC-A66F-43C2F539EFFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{073D6C26-92D7-4EEC-A66F-43C2F539EFFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{073D6C26-92D7-4EEC-A66F-43C2F539EFFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D150F57-81CC-4F23-96C3-0509715366F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D150F57-81CC-4F23-96C3-0509715366F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D150F57-81CC-4F23-96C3-0509715366F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D150F57-81CC-4F23-96C3-0509715366F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
