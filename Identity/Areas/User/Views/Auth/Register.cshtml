@@ -10,6 +10,9 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
         }
+        #adminCodeField{
+            display: none;
+        }
         .form-group {
             margin-bottom: 15px;
         }
@@ -31,6 +34,14 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        .admin-button {
+            padding: 5px 10px; 
+            background: none;   
+            color: #007BFF;   
+            border: none;       
+            cursor: pointer;     
+            margin-top: 10px; 
+            margin-left: 30%;  
         .button:hover {
             background-color: #0056b3;
         }
@@ -39,8 +50,23 @@
             margin-top: 10px;
         }
     </style>
+<script>
+        function toggleAdminCode() {
+            var adminCodeField = document.getElementById('adminCodeField');
+            if (adminCodeField.style.display === 'none' || adminCodeField.style.display === '') {
+                adminCodeField.style.display = 'block';
+            } else {
+                adminCodeField.style.display = 'none';
+            }
+        }
+    </script>
 </head>
 <body>
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+    
     <div id="con" class="container">
         <h2>Sign Up</h2>
         <form method="post" enctype="multipart/form-data">
@@ -53,9 +79,16 @@
                 <input asp-for="Password" type="password" required>
             </div>
             <button type="submit" class="button">Sign up</button>
+            <button type="button" class="admin-button" onclick="toggleAdminCode()">I'm Admin</button>
+            <div id="adminCodeField" class="admin-code">
+                <div class="form-group">
+                    <label for="adminCode">Admin Code</label>
+                    <input type="text" id="adminCode" name="adminCode">
+                </div>
+            </div>
         </form>
         <div class="link">
-            <a class="nav-link" asp-area="User" asp-controller="Auth" asp-action="Login">Already have an account</a>
+            <a class="nav-link" asp-area="User" asp-controller="Auth" asp-action="Login" style="text-align: center;">Already have an account</a>
         </div>
     </div>
 </body>

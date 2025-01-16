@@ -11,6 +11,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ProgramContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection")));
 
 builder.Services.AddScoped<IRepository<Account>, Repository<Account>>();
+builder.Services.AddScoped<IRepository<Role>, Repository<Role>>();
 builder.Services.AddScoped<JWTGenerator>();
 builder.Services.Configure<JWTSettings>(builder.Configuration.GetSection("JWTSettings"));
 builder.Services.AddAuth(builder.Configuration);

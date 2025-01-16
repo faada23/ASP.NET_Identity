@@ -2,26 +2,22 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Identity.Models;
 using Microsoft.AspNetCore.Authorization;
+using IdentityPersistance.Models;
 
 namespace Identity.Controllers;
 
-[Area("User")]
-[Authorize]
-public class HomeController : Controller
+[Area("Admin")]
+[Authorize(Roles = "Admin")]
+public class AdminController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public AdminController(ILogger<HomeController> logger)
     {
         _logger = logger;
     }
-    [AllowAnonymous]
-    public IActionResult Index()
-    {
-        return View();
-    }
 
-    public IActionResult Privacy()
+    public IActionResult Index()
     {
         return View();
     }

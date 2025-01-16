@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - Identity</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Identity.styles.css" asp-append-version="true" />
+    <style>
+        /* Простые стили для админ панели */
+        .admin-sidebar {
+            height: 100vh;
+            background-color: #f8f9fa;
+            border-right: 1px solid #ddd;
+        }
+        .admin-sidebar a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+        }
+        .admin-sidebar a:hover {
+            background-color: #e9ecef;
+            color: #000;
+        }
+        .admin-content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Боковая панель -->
+            <aside class="col-md-2 admin-sidebar">
+                <h5 class="p-3">Admin Menu</h5>
+                <a href="#">Dashboard</a>
+                <a href="#">Users</a>
+                <a href="#">Settings</a>
+                <a href="#">Reports</a>
+                <a href="#">Logout</a>
+            </aside>
+            <!-- Основной контент -->
+            <main class="col-md-10 admin-content">
+                <h1>Welcome to the Admin Panel</h1>
+                <p>This is a simple admin panel layout built using Bootstrap.</p>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Users</h5>
+                                <p class="card-text">Manage users and roles.</p>
+                                <a href="#" class="btn btn-primary">Go to Users</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Settings</h5>
+                                <p class="card-text">Update application settings.</p>
+                                <a href="#" class="btn btn-primary">Go to Settings</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Reports</h5>
+                                <p class="card-text">View system reports.</p>
+                                <a href="#" class="btn btn-primary">Go to Reports</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

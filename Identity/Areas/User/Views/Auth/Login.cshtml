@@ -50,18 +50,6 @@
     {
         <div class="alert alert-danger">@TempData["Error"]</div>
     }
-    @if (ViewBag.Token != null)
-    {
-        <div>
-            <h3>Your Token:</h3>
-            <p>@ViewBag.Token</p>
-        </div>
-    }
-    else{
-        <div>
-            <h3>No Token</h3>
-        </div>
-    }
     <div id="con" class="container">
         <h2>Sign In</h2>
         <form method="post" enctype="multipart/form-data">

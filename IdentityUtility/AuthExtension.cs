@@ -1,3 +1,4 @@
+using System.Security;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
@@ -21,7 +22,7 @@ public static class AuthExtension
                     ValidateAudience = false,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authSettings.SecretKey))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authSettings!.SecretKey))
 
                 };
 
@@ -34,7 +35,8 @@ public static class AuthExtension
                     }    
                 };
             });
-
+        
+        serviceCollection.AddAuthorization();
            
 
         return serviceCollection;    

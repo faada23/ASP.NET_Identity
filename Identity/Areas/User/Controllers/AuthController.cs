@@ -16,13 +16,16 @@ public class AuthController : Controller
 
     private readonly IRepository<Account> _accountRepository;
 
+    private readonly IRepository<Role> _roleRepository;
+
     private readonly JWTGenerator _jwtGenerator;
 
 
-    public AuthController(ILogger<AuthController> logger, IRepository<Account> accountRepository, JWTGenerator jwtGenerator)
+    public AuthController(ILogger<AuthController> logger, IRepository<Account> accountRepository, IRepository<Role> roleRepository, JWTGenerator jwtGenerator)
     {
         _logger = logger;
         _accountRepository = accountRepository;
+        _roleRepository = roleRepository;
         _jwtGenerator = jwtGenerator;
     }
 
@@ -34,10 +37,21 @@ public class AuthController : Controller
     }
 
     [HttpPost]
-    public IActionResult Register(Account account)
+    public IActionResult Register(Account account,string? adminCode = null)
     {   
+        if(_accountRepository.Get(p => p.Name == account.Name) != null){
+            TempData["Error"] = "This nickname is already taken";
+            return View();
+        }
+
         var HashPassword =  new PasswordHasher<Account>().HashPassword(account, account.Password);
         account.Password = HashPassword;
+
+        if(adminCode == "12345"){
+            account.Roles.Add(_roleRepository.Get(p => p.Name == "Admin"));
+            
+        }
+        account.Roles.Add(_roleRepository.Get(p=>p.Name == "User"));
 
         _accountRepository.Add(account);
         _accountRepository.Save();
@@ -54,23 +68,27 @@ public class AuthController : Controller
     [HttpPost]
     public IActionResult Login(Account account)
     {   
-        var User = _accountRepository.GetAll().FirstOrDefault(u => u.Name == account.Name);
+        var User = _accountRepository.GetAll("Roles").FirstOrDefault(u => u.Name == account.Name);
         if (User != null) 
         {
             var HashPassword = new PasswordHasher<Account>().VerifyHashedPassword(User, User.Password, account.Password);
             if (HashPassword == PasswordVerificationResult.Success)
             {   
-                TempData["Message"] = "Успешная аутентификация!";
+                TempData["Message"] = "Sucessful authentification!";
                 var token = _jwtGenerator.GenerateToken(User);
-                HttpContext.Response.Cookies.Append("MyCookie", token);
-                ViewBag.Token = token; 
-                return View(); 
+                HttpContext.Response.Cookies.Append("MyCookie", token); 
+                return RedirectToAction("Index", "Home"); 
             }
         }
-        TempData["Error"] = "Ошибка аутентификации. Попробуйте еще раз.";
+        TempData["Error"] = "Authentification error. Try again.";
         return View();
     }
 
+    public IActionResult Logout()
+    {
+        Response.Cookies.Delete("MyCookie");
+        return RedirectToAction("Register");
+    }
     
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

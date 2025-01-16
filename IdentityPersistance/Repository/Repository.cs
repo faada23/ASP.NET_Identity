@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using IdentityPersistance.Repository.IRepository;
 using System.Linq.Expressions;
+using IdentityPersistance.Models;
 
 public class Repository <T> : IRepository<T> where T : class
 {
@@ -20,12 +21,21 @@ public class Repository <T> : IRepository<T> where T : class
 
     public T Get(Expression<Func<T, bool>> filter)
     {
-        return dbSet.Where(filter).FirstOrDefault()!;
+        return dbSet.Where(filter).FirstOrDefault();
     }
 
-    public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null)
+    public IEnumerable<T> GetAll(string? includeProperties = null)
     {
-        return filter == null ? dbSet.ToList() : dbSet.Where(filter).ToList();
+        IQueryable<T> query = dbSet;
+
+        if (!string.IsNullOrEmpty(includeProperties))
+        {
+            foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProp);
+            }
+        }
+        return query.ToList();
     }
 
     public void Remove(T entity)
